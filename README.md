@@ -1,3 +1,13 @@
+> [!NOTE]
+> **这是 [ollama-gui](https://github.com/HelgeSverre/ollama-gui) 的简体中文版。**
+>
+> - 界面完整汉化，约 200 处文案；参数名与产品名保留英文（Temperature、Top P、Max tokens、Thinking、Keep alive 等）
+> - 对话标题跟随对话语言，中文对话生成中文标题
+> - 新增设置项 **标题生成模型**：可用更小的模型专门生成标题，避免大模型聊天时标题生成拖慢主对话
+> - 详见 [TRANSLATION.md](./TRANSLATION.md)
+>
+> 原项目 MIT 许可，版权归 Helge Sverre 所有。
+
 <p align="center">
   <img src=".github/header.png" alt="Ollama GUI showing a chat with a thinking model, a highlighted Go code block and the chat list grouped by date">
 </p>
