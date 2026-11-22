@@ -9,7 +9,7 @@ import { buildChatRequest, startChat } from '../ollama/transport'
 import { useChats } from './useChats'
 import { useModels } from './useModels'
 import { usePresets } from './usePresets'
-import { autoTitle } from './useSettings'
+import { autoTitle, titleModel } from './useSettings'
 import { errorMessage, toast } from './useToasts'
 
 const PERSIST_INTERVAL_MS = 500
@@ -218,14 +218,16 @@ function draftTitle(parts: Part[]) {
 }
 
 const TITLE_PROMPT =
-  'Write a short title (3 to 6 words) for the conversation below. Reply with the title only: no quotes, no punctuation at the end.'
+  'Write a short title (3 to 6 words) for the conversation below. Write the title in the SAME LANGUAGE as the conversation itself (if the user writes in Chinese, the title must be in Chinese). Reply with the title only: no quotes, no punctuation at the end.'
 
 /** Asks the chat's model for a short title. Leaves updatedAt alone so the chat doesn't jump. */
 async function generateTitle(chat: Chat, user: MessageNode, reply: MessageNode) {
   const excerpt = (node: MessageNode) => textOf(node.parts).slice(0, 1500)
-  const info = models.info.get(chat.model)
+  // 标题可以用一个更小/更快的模型生成，避免拖慢主对话
+  const titleModelId = titleModel.value || chat.model
+  const info = models.info.get(titleModelId)
   const request = buildChatRequest({
-    model: chat.model,
+    model: titleModelId,
     history: [
       {
         ...user,

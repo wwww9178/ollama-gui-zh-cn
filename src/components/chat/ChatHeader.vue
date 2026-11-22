@@ -67,7 +67,7 @@ async function remove() {
     <button
       type="button"
       class="hover:bg-hover text-text-secondary rounded-md p-1.5 md:hidden"
-      aria-label="Open sidebar"
+      aria-label="打开侧栏"
       @click="sidebarOpen = true"
     >
       <IconLayoutSidebar :size="18" />
@@ -79,7 +79,7 @@ async function remove() {
         ref="input"
         v-model="title"
         class="border-accent bg-list text-text w-full max-w-[360px] rounded-md border px-2 py-1 text-[13.5px] font-semibold outline-none"
-        aria-label="Chat title"
+        aria-label="对话标题"
         @keydown.enter="commitRename"
         @keydown.esc="editing = false"
         @blur="commitRename"
@@ -88,14 +88,14 @@ async function remove() {
         v-else-if="chats.activeChat.value"
         type="button"
         class="hover:bg-hover text-text truncate rounded-md px-2 py-1 text-[13.5px] font-semibold"
-        title="Rename"
+        title="重命名"
         data-testid="chat-title"
         @click="startRename"
       >
         {{ chats.activeChat.value.title }}
       </button>
       <span v-else class="text-text-secondary px-2 text-[13.5px] font-semibold">
-        New chat
+        新建对话
       </span>
     </div>
 
@@ -103,8 +103,8 @@ async function remove() {
       type="button"
       class="hover:bg-hover rounded-md p-1.5"
       :class="chatSettingsOpen ? 'text-accent bg-hover' : 'text-text-secondary'"
-      title="Chat settings"
-      aria-label="Chat settings"
+      title="对话设置"
+      aria-label="对话设置"
       data-testid="chat-settings-btn"
       @click="chatSettingsOpen = !chatSettingsOpen"
     >
@@ -116,18 +116,18 @@ async function remove() {
         <button
           type="button"
           class="hover:bg-hover text-text-secondary rounded-md p-1.5"
-          aria-label="Chat actions"
+          aria-label="对话操作"
           @click="toggle"
         >
           <IconDots :size="18" />
         </button>
       </template>
-      <MenuItem :icon="IconPencil" @click="startRename">Rename</MenuItem>
+      <MenuItem :icon="IconPencil" @click="startRename">重命名</MenuItem>
       <MenuItem
         :icon="chats.activeChat.value.pinned ? IconPinnedOff : IconPinned"
         @click="chats.togglePin(chats.activeChat.value.id)"
       >
-        {{ chats.activeChat.value.pinned ? 'Unpin' : 'Pin' }}
+        {{ chats.activeChat.value.pinned ? '取消固定' : '固定' }}
       </MenuItem>
       <MenuItem
         :icon="IconArchive"
@@ -136,10 +136,10 @@ async function remove() {
         {{ chats.activeChat.value.archived ? 'Unarchive' : 'Archive' }}
       </MenuItem>
       <MenuItem :icon="IconFileDownload" @click="exportMarkdown">
-        Export as Markdown
+        导出为 Markdown
       </MenuItem>
       <div class="border-border my-1 border-t" />
-      <MenuItem :icon="IconTrash" danger @click="remove">Delete</MenuItem>
+      <MenuItem :icon="IconTrash" danger @click="remove">删除</MenuItem>
     </Menu>
   </header>
 </template>

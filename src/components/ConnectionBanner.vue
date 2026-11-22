@@ -28,14 +28,14 @@ const models = useModels()
           class="border-border hover:bg-hover rounded-md border px-2.5 py-1 text-[12px]"
           @click="models.refresh()"
         >
-          Retry
+          重试
         </button>
         <button
           type="button"
           class="text-text-secondary hover:bg-hover rounded-md px-2.5 py-1 text-[12px]"
           @click="openModal('settings')"
         >
-          Settings
+          设置
         </button>
       </div>
     </div>

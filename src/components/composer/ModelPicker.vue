@@ -43,7 +43,7 @@ async function pick(name: string) {
       <button
         type="button"
         class="hover:bg-hover text-text-secondary flex max-w-[220px] items-center gap-1 rounded-md px-2 py-1 text-[12.5px]"
-        aria-label="Select model"
+        aria-label="选择模型"
         data-testid="model-select"
         @click="toggle"
       >
@@ -56,7 +56,7 @@ async function pick(name: string) {
       <input
         ref="search"
         v-model="query"
-        placeholder="Search models…"
+        placeholder="搜索模型…"
         class="border-border bg-list text-text placeholder:text-text-muted mb-1 w-full rounded-md border px-2.5 py-1.5 text-[12.5px] outline-none"
         @keydown.enter.prevent="filtered[0] && pick(filtered[0].name)"
       />
@@ -99,13 +99,13 @@ async function pick(name: string) {
           @click="manageModels"
         >
           <IconBox :size="14" />
-          Manage models
+          管理模型
         </button>
         <button
           type="button"
           class="hover:bg-hover text-text-secondary rounded-md p-1.5"
-          title="Refresh models"
-          aria-label="Refresh models"
+          title="刷新模型"
+          aria-label="刷新模型"
           @click="models.refresh()"
         >
           <IconRefresh :size="14" :class="{ 'animate-spin': models.loading.value }" />

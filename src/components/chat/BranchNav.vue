@@ -15,7 +15,7 @@ const emit = defineEmits<{ step: [offset: number] }>()
       type="button"
       class="hover:bg-hover hover:text-text rounded p-1 disabled:opacity-30"
       :disabled="disabled || index === 0"
-      aria-label="Previous version"
+      aria-label="上一版本"
       @click="emit('step', -1)"
     >
       <IconChevronLeft :size="14" />
@@ -25,7 +25,7 @@ const emit = defineEmits<{ step: [offset: number] }>()
       type="button"
       class="hover:bg-hover hover:text-text rounded p-1 disabled:opacity-30"
       :disabled="disabled || index === count - 1"
-      aria-label="Next version"
+      aria-label="下一版本"
       @click="emit('step', 1)"
     >
       <IconChevronRight :size="14" />

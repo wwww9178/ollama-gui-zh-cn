@@ -38,7 +38,7 @@ const icons = { info: IconInfoCircle, success: IconCheck, error: IconAlertTriang
         <button
           type="button"
           class="text-text-muted hover:text-text flex-none"
-          aria-label="Dismiss"
+          aria-label="关闭"
           @click="dismiss(t.id)"
         >
           <IconX :size="14" />

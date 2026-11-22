@@ -54,7 +54,7 @@ const actions: Omit<Item, 'section'>[] = [
   { id: 'models', label: 'Manage models', icon: IconBox, run: () => openModal('models') },
   {
     id: 'settings',
-    label: 'Settings',
+    label: '设置',
     icon: IconSettings,
     run: () => openModal('settings'),
   },
@@ -151,7 +151,7 @@ const sectionStart = (i: number) =>
           ref="input"
           v-model="query"
           type="text"
-          placeholder="Search chats, messages and commands…"
+          placeholder="搜索对话、消息与命令…"
           class="text-text placeholder:text-text-muted min-w-0 flex-1 bg-transparent text-[14px] outline-none"
           role="combobox"
           aria-expanded="true"
@@ -169,7 +169,7 @@ const sectionStart = (i: number) =>
           v-if="!items.length"
           class="text-text-muted px-3 py-6 text-center text-[12.5px]"
         >
-          No results
+          无结果
         </p>
         <template v-for="(item, i) in items" :key="item.id">
           <div
@@ -202,9 +202,9 @@ const sectionStart = (i: number) =>
       <div
         class="border-border text-text-muted flex gap-4 border-t px-4 py-2 text-[11px]"
       >
-        <span>↑↓ navigate</span>
-        <span>↵ open</span>
-        <span>esc close</span>
+        <span>↑↓ 选择</span>
+        <span>↵ 打开</span>
+        <span>esc 关闭</span>
       </div>
     </div>
   </Modal>

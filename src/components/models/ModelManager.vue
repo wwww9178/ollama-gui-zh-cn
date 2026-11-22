@@ -94,7 +94,7 @@ function details(name: string) {
 </script>
 
 <template>
-  <Modal :open="open" title="Models" width="620px" @close="closeModal('models')">
+  <Modal :open="open" title="模型" width="620px" @close="closeModal('models')">
     <div class="space-y-5 p-4">
       <section>
         <PullCombobox :installed="models.models.value.map((m) => m.name)" @pull="pull" />
@@ -104,7 +104,7 @@ function details(name: string) {
           rel="noopener noreferrer"
           class="text-accent mt-1.5 inline-block text-[11.5px] hover:underline"
         >
-          Browse the full library on ollama.com ↗
+          在 ollama.com 浏览完整 library ↗
         </a>
 
         <div
@@ -161,7 +161,7 @@ function details(name: string) {
             {{
               t === 'installed'
                 ? `Installed (${models.models.value.length})`
-                : `Loaded (${models.running.value.length})`
+                : `已加载 (${models.running.value.length})`
             }}
           </button>
         </div>
@@ -171,7 +171,7 @@ function details(name: string) {
             v-if="!models.models.value.length"
             class="text-text-muted py-6 text-center text-[12.5px]"
           >
-            No models installed yet. Pull one above.
+            还没有安装任何模型，请在上方拉取一个。
           </p>
           <div
             v-for="m in models.models.value"
@@ -207,7 +207,7 @@ function details(name: string) {
                 class="text-accent hover:bg-hover rounded-md px-2 py-1 text-[12px]"
                 @click="use(m.name)"
               >
-                Use
+                使用
               </button>
               <button
                 type="button"
@@ -231,10 +231,10 @@ function details(name: string) {
                 </dd>
               </template>
               <template v-if="models.info.get(m.name)?.raw.license">
-                <dt class="text-text-muted">License</dt>
+                <dt class="text-text-muted">许可协议</dt>
                 <dd>
                   <details>
-                    <summary class="text-accent cursor-pointer">Show</summary>
+                    <summary class="text-accent cursor-pointer">显示</summary>
                     <pre
                       class="bg-list mt-1 max-h-48 overflow-auto rounded p-2 text-[11px] whitespace-pre-wrap"
                       >{{ models.info.get(m.name)?.raw.license }}</pre>
@@ -250,7 +250,7 @@ function details(name: string) {
             v-if="!models.running.value.length"
             class="text-text-muted py-6 text-center text-[12.5px]"
           >
-            No models loaded in memory.
+            内存中没有已加载的模型。
           </p>
           <div
             v-for="m in models.running.value"
@@ -273,7 +273,7 @@ function details(name: string) {
               @click="unload(m.name)"
             >
               <IconPlayerEject :size="14" />
-              Unload
+              卸载
             </button>
           </div>
         </template>

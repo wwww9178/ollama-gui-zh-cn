@@ -31,7 +31,7 @@ async function onClick(event: MouseEvent) {
   const code = button.closest('.code-block')?.querySelector('code')?.textContent ?? ''
   if (!(await copyText(code))) return
   button.textContent = 'Copied'
-  setTimeout(() => (button.textContent = 'Copy'), 1500)
+  setTimeout(() => (button.textContent = '复制'), 1500)
 }
 </script>
 

@@ -127,7 +127,7 @@ const updated = computed(() =>
         :aria-activedescendant="open && active >= 0 ? optionId(active) : undefined"
         autocomplete="off"
         spellcheck="false"
-        placeholder="Search the Ollama library, or type a name like qwen3:8b"
+        placeholder="搜索 Ollama library，或输入名称如 qwen3:8b"
         class="border-border bg-list text-text placeholder:text-text-muted focus:border-accent min-w-0 flex-1 rounded-lg border px-3 py-1.5 text-[13px] outline-none"
         data-testid="pull-input"
         @input="open = true"
@@ -141,7 +141,7 @@ const updated = computed(() =>
         class="bg-accent flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12.5px] font-semibold text-white hover:opacity-90 disabled:opacity-40"
       >
         <IconDownload :size="15" />
-        Pull
+        拉取
       </button>
     </form>
 
@@ -150,7 +150,7 @@ const updated = computed(() =>
       id="pull-options"
       ref="list"
       role="listbox"
-      aria-label="Models in the Ollama library"
+      aria-label="Ollama library 中的模型"
       class="bg-panel border-border-strong mt-1 max-h-[340px] overflow-y-auto rounded-lg border p-1 shadow-sm"
       data-testid="pull-suggestions"
       @mousedown.prevent
@@ -159,7 +159,7 @@ const updated = computed(() =>
         v-if="!query.trim()"
         class="text-text-muted px-2.5 pt-1.5 pb-1 text-[11px] font-semibold"
       >
-        Popular
+        热门
       </div>
       <div
         v-for="(option, i) in options"
@@ -181,7 +181,7 @@ const updated = computed(() =>
             class="text-green flex items-center gap-0.5 text-[11px]"
           >
             <IconCheck :size="12" />
-            Installed
+            已安装
           </span>
           <span class="text-text-muted ml-auto flex-none text-[11px] tabular-nums">
             {{ formatPulls(option.model.pulls, locale) }} pulls

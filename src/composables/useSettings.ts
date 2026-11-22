@@ -12,6 +12,8 @@ export const theme = useLocalStorage<Theme>('ollama-gui:theme', 'system')
 /** BCP 47 tag for dates and numbers; empty follows the browser. */
 export const dateLocale = useLocalStorage('ollama-gui:locale', '')
 export const autoTitle = useLocalStorage('ollama-gui:auto-title', true)
+/** Model used only for generating chat titles. Empty = follow the chat's own model. */
+export const titleModel = useLocalStorage('ollama-gui:title-model', '')
 export const currentModel = useLocalStorage('currentModel', '')
 export const enableMarkdown = useLocalStorage('markdown', true)
 export const showSystem = useLocalStorage('systemMessages', true)

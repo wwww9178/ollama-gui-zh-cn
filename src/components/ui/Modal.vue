@@ -59,7 +59,7 @@ function onBackdrop(event: MouseEvent) {
         <button
           type="button"
           class="hover:bg-hover text-text-secondary ml-auto rounded-md p-1.5"
-          aria-label="Close"
+          aria-label="关闭"
           @click="emit('close')"
         >
           <IconX :size="16" />

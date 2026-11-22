@@ -214,10 +214,10 @@ defineExpose({ focus })
         class="text-text placeholder:text-text-muted block max-h-[40vh] min-h-[52px] w-full resize-none bg-transparent px-4 pt-3.5 pb-1 text-[14px] leading-relaxed outline-none"
         :placeholder="
           chats.activeModel.value
-            ? `Message ${chats.activeModel.value}`
-            : 'Select a model to start'
+            ? `发消息给 ${chats.activeModel.value}`
+            : '先选择一个模型'
         "
-        aria-label="Message"
+        aria-label="消息"
         data-testid="chat-textarea"
         @keydown="onKeydown"
         @paste="onPaste"
@@ -238,8 +238,8 @@ defineExpose({ focus })
         <button
           type="button"
           class="hover:bg-hover text-text-secondary rounded-md p-1.5"
-          title="Attach files"
-          aria-label="Attach files"
+          title="添加附件"
+          aria-label="添加附件"
           @click="fileInput?.click()"
         >
           <IconPaperclip :size="17" />
@@ -277,7 +277,7 @@ defineExpose({ focus })
           >
             {{ level[0].toUpperCase() + level.slice(1) }} effort
           </MenuItem>
-          <MenuItem @click="setThink(false)">Off</MenuItem>
+          <MenuItem @click="setThink(false)">关闭</MenuItem>
         </Menu>
 
         <span
@@ -315,8 +315,8 @@ defineExpose({ focus })
           type="button"
           class="bg-text text-panel flex h-8 w-8 flex-none items-center justify-center rounded-full hover:opacity-85"
           :class="contextUsage ? 'ml-2' : 'ml-auto'"
-          aria-label="Stop generating"
-          title="Stop (Esc)"
+          aria-label="停止生成"
+          title="停止 (Esc)"
           data-testid="stop-btn"
           @click="generation.stop(chatId)"
         >
@@ -328,7 +328,7 @@ defineExpose({ focus })
           class="bg-accent flex h-8 w-8 flex-none items-center justify-center rounded-full text-white hover:opacity-90 disabled:opacity-30"
           :class="contextUsage ? 'ml-2' : 'ml-auto'"
           :disabled="!canSend"
-          aria-label="Send message"
+          aria-label="发送消息"
           data-testid="send-btn"
         >
           <IconArrowUp :size="17" />

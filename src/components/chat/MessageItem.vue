@@ -152,7 +152,7 @@ function onEditKeydown(event: KeyboardEvent) {
           class="hover:bg-hover text-text-secondary rounded-md px-3 py-1 text-[12.5px]"
           @click="cancelEdit"
         >
-          Cancel
+          取消
         </button>
         <button
           type="button"
@@ -160,7 +160,7 @@ function onEditKeydown(event: KeyboardEvent) {
           data-testid="edit-submit"
           @click="submitEdit"
         >
-          Send
+          发送
         </button>
       </div>
     </div>
@@ -183,12 +183,12 @@ function onEditKeydown(event: KeyboardEvent) {
       />
       <ActionButton
         :icon="copied ? IconCheck : IconCopy"
-        :label="copied ? 'Copied' : 'Copy'"
+        :label="copied ? '已复制' : '复制'"
         @click="copy"
       />
       <ActionButton
         :icon="IconPencil"
-        label="Edit"
+        label="编辑"
         :disabled="busy"
         data-testid="edit-btn"
         @click="startEdit"
@@ -202,7 +202,7 @@ function onEditKeydown(event: KeyboardEvent) {
     class="border-border bg-list my-2 rounded-lg border px-3 py-2"
   >
     <div class="text-text-muted mb-1 text-[11px] font-semibold tracking-wide uppercase">
-      System
+      系统
     </div>
     <div class="text-text-secondary text-[12.5px] whitespace-pre-wrap">
       {{ text }}
@@ -243,7 +243,7 @@ function onEditKeydown(event: KeyboardEvent) {
           :disabled="busy"
           @click="regenerate"
         >
-          Retry
+          重试
         </button>
       </div>
     </template>
@@ -252,7 +252,7 @@ function onEditKeydown(event: KeyboardEvent) {
       v-if="node.status === 'aborted'"
       class="text-text-muted mt-1 text-[11.5px] italic"
     >
-      Stopped
+      已停止
     </div>
 
     <div
@@ -264,20 +264,20 @@ function onEditKeydown(event: KeyboardEvent) {
     >
       <ActionButton
         :icon="copied ? IconCheck : IconCopy"
-        :label="copied ? 'Copied' : 'Copy'"
+        :label="copied ? '已复制' : '复制'"
         :disabled="!text"
         data-testid="copy-btn"
         @click="copy"
       />
       <ActionButton
         :icon="IconRefresh"
-        label="Regenerate"
+        label="重新生成"
         :disabled="busy"
         data-testid="regenerate-btn"
         @click="regenerate"
       />
-      <ActionButton :icon="IconGitBranch" label="Branch in new chat" @click="branch" />
-      <ActionButton :icon="IconTrash" label="Delete" :disabled="busy" @click="remove" />
+      <ActionButton :icon="IconGitBranch" label="在新对话中分支" @click="branch" />
+      <ActionButton :icon="IconTrash" label="删除" :disabled="busy" @click="remove" />
       <BranchNav
         :index="sibling.index"
         :count="sibling.count"

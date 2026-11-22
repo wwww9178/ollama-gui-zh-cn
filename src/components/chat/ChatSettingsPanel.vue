@@ -184,10 +184,10 @@ const scopes = computed(() => [
 
 const scopeHint = computed(() => {
   if (scope.value === 'chat')
-    return 'Applies to this conversation only. Empty fields inherit model and global defaults.'
+    return '仅对当前对话生效。留空的项会继承模型与全局的默认值。'
   if (scope.value === 'model')
-    return `Defaults for every chat using ${model.value}. Empty fields inherit global defaults.`
-  return 'Defaults for all chats and models.'
+    return `对使用 ${model.value} 的所有对话生效。留空的项会继承全局默认值。`
+  return '对所有对话与模型生效的默认值。'
 })
 </script>
 
@@ -195,15 +195,15 @@ const scopeHint = computed(() => {
   <aside
     v-if="chatSettingsOpen"
     class="bg-panel border-border fixed inset-y-0 right-0 z-40 flex w-[min(380px,100vw)] flex-col border-l shadow-xl lg:static lg:shadow-none"
-    aria-label="Chat settings"
+    aria-label="对话设置"
     data-testid="chat-settings"
   >
     <header class="border-border flex h-[46px] flex-none items-center border-b px-4">
-      <h2 class="text-[13.5px] font-semibold">Chat settings</h2>
+      <h2 class="text-[13.5px] font-semibold">对话设置</h2>
       <button
         type="button"
         class="hover:bg-hover text-text-secondary ml-auto rounded-md p-1.5"
-        aria-label="Close chat settings"
+        aria-label="关闭对话设置"
         @click="chatSettingsOpen = false"
       >
         <IconX :size="16" />
@@ -238,15 +238,15 @@ const scopeHint = computed(() => {
       </p>
 
       <label class="block">
-        <span class="text-text mb-1 block text-[12px] font-medium">System prompt</span>
+        <span class="text-text mb-1 block text-[12px] font-medium">系统提示词</span>
         <textarea
           v-model="form.systemPrompt"
           rows="6"
           class="border-border bg-list text-text placeholder:text-text-muted focus:border-accent block w-full resize-y rounded-lg border p-2.5 text-[12.5px] leading-relaxed outline-none"
           :placeholder="
             inherited.systemPrompt
-              ? `Inherited: ${inherited.systemPrompt}`
-              : 'You are a helpful assistant…'
+              ? `继承自：${inherited.systemPrompt}`
+              : '你是一个乐于助人的助手…'
           "
           data-testid="system-prompt-input"
         />
@@ -270,7 +270,7 @@ const scopeHint = computed(() => {
           </option>
         </select>
         <span class="text-text-muted mt-1 block text-[11px]">
-          Only sent to models with the thinking capability.
+          仅发送给支持 Thinking 的模型。
         </span>
       </label>
 
@@ -289,8 +289,8 @@ const scopeHint = computed(() => {
             :placeholder="
               inherited.options?.[f.key]?.toString() ??
               (f.key === 'num_ctx' && info?.contextLength
-                ? `max ${info.contextLength}`
-                : 'default')
+                ? `最大 ${info.contextLength}`
+                : '默认')
             "
           />
         </label>
@@ -311,7 +311,7 @@ const scopeHint = computed(() => {
         class="hover:bg-hover text-text-secondary rounded-md px-3 py-1.5 text-[12.5px]"
         @click="reset"
       >
-        Clear
+        清除
       </button>
       <button
         type="button"
@@ -319,7 +319,7 @@ const scopeHint = computed(() => {
         data-testid="save-chat-settings"
         @click="save"
       >
-        Save
+        保存
       </button>
     </footer>
   </aside>

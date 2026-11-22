@@ -13,6 +13,7 @@ import {
   ollamaUrl,
   showSystem,
   theme,
+  titleModel,
   type Theme,
 } from '../../composables/useSettings'
 import { errorMessage, toast } from '../../composables/useToasts'
@@ -166,13 +167,13 @@ const origin = location.origin
 </script>
 
 <template>
-  <Modal :open="open" title="Settings" width="560px" @close="closeModal('settings')">
+  <Modal :open="open" title="设置" width="560px" @close="closeModal('settings')">
     <div class="divide-border divide-y">
       <section class="space-y-2 p-4">
         <h3 class="text-text-muted text-[11px] font-semibold tracking-wide uppercase">
-          Connection
+          连接
         </h3>
-        <label for="ollama-url" class="text-text block text-[12.5px]">Ollama URL</label>
+        <label for="ollama-url" class="text-text block text-[12.5px]">Ollama 地址</label>
         <form class="flex gap-2" @submit.prevent="saveUrl">
           <input
             id="ollama-url"
@@ -198,21 +199,21 @@ const origin = location.origin
           <template v-else-if="models.connection.value === 'error'">
             {{ models.connectionError.value }}
           </template>
-          <template v-else>Connecting…</template>
+          <template v-else>连接中…</template>
         </p>
         <CorsHelp v-if="models.connection.value === 'error'" />
       </section>
 
       <section class="space-y-3 p-4">
         <h3 class="text-text-muted text-[11px] font-semibold tracking-wide uppercase">
-          Appearance
+          外观
         </h3>
         <div class="flex items-center justify-between gap-4">
-          <span class="text-text text-[12.5px]">Theme</span>
+          <span class="text-text text-[12.5px]">主题</span>
           <div
             class="bg-list border-border flex gap-0.5 rounded-lg border p-0.5"
             role="radiogroup"
-            aria-label="Theme"
+            aria-label="主题"
           >
             <button
               v-for="t in themes"
@@ -236,9 +237,9 @@ const origin = location.origin
         <div>
           <div class="flex items-center justify-between gap-4">
             <label for="locale" class="text-text text-[12.5px]">
-              Regional format
+              区域格式
               <span class="text-text-muted block text-[11.5px]">
-                How dates, times and numbers are written
+                日期、时间与数字的书写格式
               </span>
             </label>
             <select
@@ -251,7 +252,7 @@ const origin = location.origin
               <option v-for="tag in LOCALES" :key="tag" :value="tag">
                 {{ displayName(tag) }}
               </option>
-              <option value="custom">Other…</option>
+              <option value="custom">其他…</option>
             </select>
           </div>
           <div
@@ -259,13 +260,13 @@ const origin = location.origin
             class="mt-2 flex items-center justify-end gap-2"
           >
             <span v-if="customInvalid" class="text-red text-[11.5px]">
-              Not recognised, using system format
+              无法识别，使用系统格式
             </span>
             <input
               v-model="customLocale"
-              placeholder="Language tag, e.g. en-IE"
+              placeholder="语言标签，例如 en-IE"
               class="border-border bg-list text-text focus:border-accent w-[180px] rounded-lg border px-2 py-1 text-[12.5px] outline-none"
-              aria-label="Language tag"
+              aria-label="语言标签"
             />
           </div>
           <p
@@ -277,28 +278,43 @@ const origin = location.origin
         </div>
         <Toggle
           v-model="enableMarkdown"
-          label="Render Markdown"
-          description="Formatting, code highlighting and math in replies"
+          label="渲染 Markdown"
+          description="回复中的排版、代码高亮与公式"
         />
         <Toggle
           v-model="showSystem"
-          label="Show system prompts"
-          description="Display the system prompt above the conversation"
+          label="显示系统提示词"
+          description="在对话上方显示系统提示词"
         />
       </section>
 
       <section class="space-y-2 p-4">
         <h3 class="text-text-muted text-[11px] font-semibold tracking-wide uppercase">
-          Chats
+          对话
         </h3>
         <Toggle
           v-model="autoTitle"
-          label="Generate chat titles"
-          description="Ask the model for a short title after the first reply"
+          label="自动生成对话标题"
+          description="首轮回复后让模型生成简短标题"
         />
+        <label for="title-model" class="text-text block pt-1 text-[12.5px]">
+          标题生成模型
+          <span class="text-text-muted">（留空则跟随对话模型）</span>
+        </label>
+        <select
+          id="title-model"
+          v-model="titleModel"
+          class="border-border bg-list text-text focus:border-accent w-full rounded-lg border px-3 py-1.5 text-[12.5px] outline-none"
+          data-testid="select-title-model"
+        >
+          <option value="">跟随对话模型</option>
+          <option v-for="m in models.models.value" :key="m.name" :value="m.name">
+            {{ m.name }}
+          </option>
+        </select>
         <label for="gravatar" class="text-text block pt-1 text-[12.5px]">
-          Gravatar email
-          <span class="text-text-muted">(optional avatar)</span>
+          Gravatar 邮箱
+          <span class="text-text-muted">（可选头像）</span>
         </label>
         <input
           id="gravatar"
@@ -311,13 +327,12 @@ const origin = location.origin
 
       <section class="space-y-3 p-4">
         <h3 class="text-text-muted text-[11px] font-semibold tracking-wide uppercase">
-          Data
+          数据
         </h3>
         <p class="text-text-secondary text-[12px] leading-relaxed">
-          Chats are stored only in this browser, for
+          对话仅保存在当前浏览器中，地址为
           <code class="bg-hover rounded px-1">{{ origin }}</code>
-          . A different address, port, browser or private window starts with an empty
-          history. Export to move chats between them.
+          。换一个地址、端口、浏览器或使用隐私窗口，都会从空历史开始。可以用导出功能在它们之间迁移对话。
         </p>
         <div
           v-if="persisted !== null"
@@ -326,7 +341,7 @@ const origin = location.origin
           <span>
             {{
               persisted
-                ? 'Persistent storage is on'
+                ? '已开启持久存储'
                 : 'The browser may clear storage when space runs low'
             }}
           </span>
@@ -336,7 +351,7 @@ const origin = location.origin
             class="border-border hover:bg-hover rounded-lg border px-3 py-1 text-[12px]"
             @click="requestPersist"
           >
-            Keep data
+            保留数据
           </button>
         </div>
         <div class="flex flex-wrap gap-2">
@@ -347,7 +362,7 @@ const origin = location.origin
             @click="doExport"
           >
             <IconDownload :size="15" />
-            Export all
+            导出全部
           </button>
           <button
             type="button"
@@ -356,7 +371,7 @@ const origin = location.origin
             @click="importInput?.click()"
           >
             <IconUpload :size="15" />
-            Import
+            导入
           </button>
           <input
             ref="importInput"
@@ -373,7 +388,7 @@ const origin = location.origin
             @click="wipe"
           >
             <IconTrash :size="15" />
-            Delete all chats
+            删除全部对话
           </button>
         </div>
       </section>

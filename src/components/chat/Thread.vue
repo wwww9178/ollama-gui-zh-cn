@@ -77,7 +77,7 @@ watch(
       ref="scroller"
       class="h-full overflow-y-auto"
       role="log"
-      aria-label="Chat messages"
+      aria-label="对话消息"
       @scroll.passive="onScroll"
     >
       <div ref="content" class="mx-auto max-w-[46rem] px-4 pt-4 pb-8">
@@ -85,10 +85,10 @@ watch(
           v-if="systemPrompt && showSystem"
           type="button"
           class="border-border text-text-muted hover:text-text-secondary hover:bg-hover mb-2 flex w-full items-center gap-2 rounded-lg border border-dashed px-3 py-1.5 text-left text-[12px]"
-          title="Edit in chat settings"
+          title="在对话设置中修改"
           @click="chatSettingsOpen = true"
         >
-          <span class="flex-none font-semibold">System prompt</span>
+          <span class="flex-none font-semibold">系统提示词</span>
           <span class="truncate">{{ systemPrompt }}</span>
         </button>
 
@@ -97,7 +97,7 @@ watch(
           class="flex flex-col items-center justify-center py-[18vh] text-center"
         >
           <OllamaAvatar :size="56" class="mb-4" />
-          <p class="text-text text-[20px] font-semibold">How can I help?</p>
+          <p class="text-text text-[20px] font-semibold">有什么可以帮你？</p>
           <p class="text-text-muted mt-1 text-[13px]">
             {{
               chats.activeModel.value
@@ -125,7 +125,7 @@ watch(
       @click="scrollToBottom(true)"
     >
       <IconArrowDown :size="14" />
-      Scroll to bottom
+      滚到底部
     </button>
   </div>
 </template>

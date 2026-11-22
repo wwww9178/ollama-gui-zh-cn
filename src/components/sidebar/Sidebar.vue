@@ -114,7 +114,7 @@ async function remove(chat: Chat) {
   <aside
     class="bg-chrome border-border fixed inset-y-0 left-0 z-40 flex w-[264px] flex-none flex-col border-r transition-transform md:static md:translate-x-0"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-    aria-label="Chats"
+    aria-label="对话"
   >
     <div class="flex h-[46px] flex-none items-center gap-1 px-3">
       <OllamaAvatar :size="24" />
@@ -122,8 +122,8 @@ async function remove(chat: Chat) {
       <button
         type="button"
         class="hover:bg-hover text-text-secondary ml-auto rounded-md p-1.5"
-        title="Search (⌘K)"
-        aria-label="Search"
+        title="搜索 (⌘K)"
+        aria-label="搜索"
         @click="openModal('palette')"
       >
         <IconSearch :size="17" />
@@ -131,8 +131,8 @@ async function remove(chat: Chat) {
       <button
         type="button"
         class="hover:bg-hover text-text-secondary rounded-md p-1.5"
-        title="New chat (⌘⇧O)"
-        aria-label="New chat"
+        title="新建对话 (⌘⇧O)"
+        aria-label="新建对话"
         data-testid="new-chat-btn"
         @click="startNew"
       >
@@ -141,7 +141,7 @@ async function remove(chat: Chat) {
       <button
         type="button"
         class="hover:bg-hover text-text-secondary rounded-md p-1.5 md:hidden"
-        aria-label="Close sidebar"
+        aria-label="关闭侧栏"
         @click="sidebarOpen = false"
       >
         <IconX :size="17" />
@@ -152,7 +152,7 @@ async function remove(chat: Chat) {
       <input
         v-model="filter"
         type="search"
-        placeholder="Filter chats"
+        placeholder="筛选对话"
         class="border-border bg-panel text-text placeholder:text-text-muted focus:border-accent w-full rounded-md border px-2.5 py-1.5 text-[12.5px] outline-none"
         data-testid="search-chats"
       />
@@ -174,7 +174,7 @@ async function remove(chat: Chat) {
               ref="renameInput"
               v-model="renameValue"
               class="border-accent bg-panel text-text m-0.5 w-full rounded border px-2 py-1 text-[12.5px] outline-none"
-              aria-label="Chat title"
+              aria-label="对话标题"
               @keydown.enter="commitRename(chat)"
               @keydown.esc="renaming = null"
               @blur="commitRename(chat)"
@@ -190,7 +190,7 @@ async function remove(chat: Chat) {
               <span
                 v-if="generation.isGenerating(chat.id)"
                 class="bg-accent mr-1.5 inline-block h-1.5 w-1.5 animate-pulse rounded-full align-middle"
-                title="Generating"
+                title="生成中"
               />
               {{ chat.title }}
             </button>
@@ -206,18 +206,18 @@ async function remove(chat: Chat) {
                   <IconDots :size="15" />
                 </button>
               </template>
-              <MenuItem :icon="IconPencil" @click="startRename(chat)">Rename</MenuItem>
+              <MenuItem :icon="IconPencil" @click="startRename(chat)">重命名</MenuItem>
               <MenuItem
                 :icon="chat.pinned ? IconPinnedOff : IconPinned"
                 @click="chats.togglePin(chat.id)"
               >
-                {{ chat.pinned ? 'Unpin' : 'Pin' }}
+                {{ chat.pinned ? '取消固定' : '固定' }}
               </MenuItem>
               <MenuItem :icon="IconArchive" @click="chats.toggleArchive(chat.id)">
-                Archive
+                归档
               </MenuItem>
               <MenuItem :icon="IconFileDownload" @click="exportMarkdown(chat)">
-                Export as Markdown
+                导出为 Markdown
               </MenuItem>
               <div class="border-border my-1 border-t" />
               <MenuItem
@@ -226,7 +226,7 @@ async function remove(chat: Chat) {
                 data-testid="delete-chat-btn"
                 @click="remove(chat)"
               >
-                Delete
+                删除
               </MenuItem>
             </Menu>
           </div>
@@ -270,7 +270,7 @@ async function remove(chat: Chat) {
               class="text-text-muted hover:text-text mr-1 rounded p-1 text-[11px] opacity-0 group-hover:opacity-100"
               @click="chats.toggleArchive(chat.id)"
             >
-              Restore
+              恢复
             </button>
           </div>
         </template>
@@ -285,7 +285,7 @@ async function remove(chat: Chat) {
         @click="openModal('models')"
       >
         <IconBox :size="16" class="text-text-muted" />
-        Models
+        模型
         <span class="text-text-muted ml-auto text-[11px]">
           {{ models.models.value.length }}
         </span>
@@ -297,7 +297,7 @@ async function remove(chat: Chat) {
         @click="openModal('settings')"
       >
         <IconSettings :size="16" class="text-text-muted" />
-        Settings
+        设置
         <span
           class="ml-auto h-2 w-2 rounded-full"
           :class="{
