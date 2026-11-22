@@ -4,9 +4,9 @@ import type { Capability } from '../../ollama/models'
 
 defineProps<{ capabilities?: Capability[] }>()
 const badges = [
-  { key: 'vision', icon: IconEye, label: 'Vision' },
+  { key: 'vision', icon: IconEye, label: '视觉' },
   { key: 'thinking', icon: IconBrain, label: 'Thinking' },
-  { key: 'tools', icon: IconTool, label: 'Tools' },
+  { key: 'tools', icon: IconTool, label: '工具' },
 ] as const
 </script>
 

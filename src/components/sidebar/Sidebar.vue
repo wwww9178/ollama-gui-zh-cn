@@ -49,7 +49,7 @@ const groups = computed(() => {
   const live = matching.value.filter((c) => !c.archived).sort(byRecent)
   const out: { key: string; label: string; chats: Chat[] }[] = []
   const pinned = live.filter((c) => c.pinned)
-  if (pinned.length) out.push({ key: 'pinned', label: 'Pinned', chats: pinned })
+  if (pinned.length) out.push({ key: 'pinned', label: '已固定', chats: pinned })
   for (const chat of live.filter((c) => !c.pinned)) {
     const key = dateGroup(chat.updatedAt)
     let group = out.find((g) => g.key === key)
@@ -96,9 +96,9 @@ async function exportMarkdown(chat: Chat) {
 
 async function remove(chat: Chat) {
   const ok = await confirmAction({
-    title: 'Delete chat?',
+    title: '删除该对话？',
     message: `"${chat.title}" and all of its messages will be deleted.`,
-    confirmLabel: 'Delete',
+    confirmLabel: '删除',
     danger: true,
   })
   if (ok) await chats.deleteChat(chat.id)
@@ -234,7 +234,7 @@ async function remove(chat: Chat) {
       </section>
 
       <p v-if="!groups.length" class="text-text-muted px-2 py-3 text-[12px]">
-        {{ filter ? 'No chats match.' : 'No chats yet.' }}
+        {{ filter ? '没有匹配的对话。' : '还没有对话。' }}
       </p>
 
       <section v-if="archived.length">
@@ -249,7 +249,7 @@ async function remove(chat: Chat) {
             class="transition-transform"
             :class="{ 'rotate-90': showArchived }"
           />
-          Archived ({{ archived.length }})
+          已归档 ({{ archived.length }})
         </button>
         <template v-if="showArchived">
           <div

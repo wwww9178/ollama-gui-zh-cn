@@ -101,8 +101,8 @@ watch(
           <p class="text-text-muted mt-1 text-[13px]">
             {{
               chats.activeModel.value
-                ? `Chatting with ${chats.activeModel.value}`
-                : 'Pick a model below to start'
+                ? `正在与 ${chats.activeModel.value} 聊天`
+                : '在下方选择一个模型开始'
             }}
           </p>
         </div>

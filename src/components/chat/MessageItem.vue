@@ -74,9 +74,9 @@ const branch = () => chats.branchToNewChat(props.node.chatId, props.node.id)
 
 async function remove() {
   const ok = await confirmAction({
-    title: 'Delete this message?',
+    title: '删除这条消息？',
     message: 'The message and every reply below it on this branch will be deleted.',
-    confirmLabel: 'Delete',
+    confirmLabel: '删除',
     danger: true,
   })
   if (ok) await chats.deleteBranch(props.node.chatId, props.node.id)

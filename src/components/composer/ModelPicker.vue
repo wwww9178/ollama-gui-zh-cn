@@ -47,7 +47,7 @@ async function pick(name: string) {
         data-testid="model-select"
         @click="toggle"
       >
-        <span class="truncate">{{ chats.activeModel.value || 'Select a model' }}</span>
+        <span class="truncate">{{ chats.activeModel.value || '选择一个模型' }}</span>
         <IconChevronDown :size="14" class="flex-none" />
       </button>
     </template>
@@ -89,7 +89,7 @@ async function pick(name: string) {
           />
         </button>
         <p v-if="!filtered.length" class="text-text-muted px-2.5 py-3 text-[12px]">
-          {{ models.models.value.length ? 'No matching models' : 'No models installed' }}
+          {{ models.models.value.length ? '没有匹配的模型' : '还没有安装模型' }}
         </p>
       </div>
       <div class="border-border mt-1 flex gap-1 border-t pt-1">

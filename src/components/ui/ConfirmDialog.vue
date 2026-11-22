@@ -32,7 +32,7 @@ import { pendingConfirm } from '../../composables/useConfirm'
         data-testid="confirm-btn"
         @click="pendingConfirm?.resolve(true)"
       >
-        {{ pendingConfirm?.confirmLabel ?? 'Confirm' }}
+        {{ pendingConfirm?.confirmLabel ?? '确认' }}
       </button>
     </template>
   </Modal>

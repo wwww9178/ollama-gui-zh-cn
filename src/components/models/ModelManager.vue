@@ -45,7 +45,7 @@ async function remove(name: string) {
   const ok = await confirmAction({
     title: `Delete ${name}?`,
     message: 'The model files are removed from disk. You can pull it again later.',
-    confirmLabel: 'Delete',
+    confirmLabel: '删除',
     danger: true,
   })
   if (!ok) return
@@ -124,7 +124,7 @@ function details(name: string) {
             <button
               type="button"
               class="text-text-muted hover:text-text ml-auto rounded p-0.5"
-              :aria-label="job.error ? 'Dismiss' : 'Cancel pull'"
+              :aria-label="job.error ? '关闭' : '取消拉取'"
               @click="job.error ? models.pulls.delete(job.model) : job.abort()"
             >
               <IconX :size="14" />
@@ -160,7 +160,7 @@ function details(name: string) {
           >
             {{
               t === 'installed'
-                ? `Installed (${models.models.value.length})`
+                ? `已安装 (${models.models.value.length})`
                 : `已加载 (${models.running.value.length})`
             }}
           </button>
@@ -196,7 +196,7 @@ function details(name: string) {
                     {{ m.name }}
                   </span>
                   <span class="text-text-muted block text-[11.5px]">
-                    {{ bytes(m.size) }} · updated
+                    {{ bytes(m.size) }} · 更新于
                     {{ relativeTime(new Date(m.modified_at), locale) }}
                   </span>
                 </span>
@@ -262,9 +262,9 @@ function details(name: string) {
                 {{ m.name }}
               </span>
               <span class="text-text-muted block text-[11.5px]">
-                {{ bytes(m.size_vram) }} VRAM of {{ bytes(m.size) }}
-                <template v-if="m.context_length">· ctx {{ m.context_length }}</template>
-                · unloads {{ relativeTime(new Date(m.expires_at), locale) }}
+                {{ bytes(m.size_vram) }} 显存 / {{ bytes(m.size) }}
+                <template v-if="m.context_length">· 上下文 {{ m.context_length }}</template>
+                · {{ relativeTime(new Date(m.expires_at), locale) }} 后卸载
               </span>
             </span>
             <button

@@ -37,16 +37,16 @@ const NUMBER_FIELDS: {
     step: 0.05,
     min: 0,
     max: 2,
-    hint: 'Higher is more creative',
+    hint: '数值越高越发散',
   },
-  { key: 'top_p', label: 'Top P', step: 0.05, min: 0, max: 1, hint: 'Nucleus sampling' },
-  { key: 'top_k', label: 'Top K', step: 1, min: 0, hint: 'Limit sampling to K tokens' },
+  { key: 'top_p', label: 'Top P', step: 0.05, min: 0, max: 1, hint: '核采样' },
+  { key: 'top_k', label: 'Top K', step: 1, min: 0, hint: '将采样限制在前 K 个 token' },
   {
     key: 'num_ctx',
     label: 'Context length (num_ctx)',
     step: 1024,
     min: 512,
-    hint: 'Tokens of context',
+    hint: '上下文 token 数',
   },
   {
     key: 'num_predict',
@@ -60,9 +60,9 @@ const NUMBER_FIELDS: {
     label: 'Repeat penalty',
     step: 0.05,
     min: 0,
-    hint: 'Discourages repetition',
+    hint: '抑制重复用词',
   },
-  { key: 'seed', label: 'Seed', step: 1, hint: 'Fixed seed for reproducible output' },
+  { key: 'seed', label: 'Seed', step: 1, hint: '固定种子，保证输出可复现' },
 ]
 
 /** Settings stored at the selected scope. */
@@ -161,7 +161,7 @@ async function save() {
       settings ?? {},
     )
   load()
-  toast('Settings saved', 'success')
+  toast('设置已保存', 'success')
 }
 
 async function reset() {
@@ -173,13 +173,13 @@ async function reset() {
 }
 
 const scopes = computed(() => [
-  { value: 'chat' as const, label: 'This chat' },
+  { value: 'chat' as const, label: '本对话' },
   {
     value: 'model' as const,
-    label: model.value ? `Model` : 'Model',
+    label: '模型',
     disabled: !model.value,
   },
-  { value: 'global' as const, label: 'All chats' },
+  { value: 'global' as const, label: '全部对话' },
 ])
 
 const scopeHint = computed(() => {

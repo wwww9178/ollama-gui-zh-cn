@@ -21,7 +21,7 @@ interface Item {
   label: string
   detail?: string
   icon: Component
-  section: 'Actions' | 'Chats' | 'Messages'
+  section: '操作' | '对话' | '消息'
   run(): void
 }
 
@@ -50,8 +50,8 @@ watchDebounced(
 )
 
 const actions: Omit<Item, 'section'>[] = [
-  { id: 'new', label: 'New chat', icon: IconPlus, run: () => chats.newChat() },
-  { id: 'models', label: 'Manage models', icon: IconBox, run: () => openModal('models') },
+  { id: 'new', label: '新建对话', icon: IconPlus, run: () => chats.newChat() },
+  { id: 'models', label: '管理模型', icon: IconBox, run: () => openModal('models') },
   {
     id: 'settings',
     label: '设置',
@@ -60,13 +60,13 @@ const actions: Omit<Item, 'section'>[] = [
   },
   {
     id: 'chat-settings',
-    label: 'Chat settings and system prompt',
+    label: '对话设置与系统提示词',
     icon: IconAdjustmentsHorizontal,
     run: () => (chatSettingsOpen.value = true),
   },
   {
     id: 'theme',
-    label: 'Toggle light / dark theme',
+    label: '切换浅色 / 深色主题',
     icon: IconMoon,
     run: () => (theme.value = isDark.value ? 'light' : 'dark'),
   },
@@ -79,7 +79,7 @@ const items = computed<Item[]>(() => {
     .map((a) => ({
       ...a,
       icon: a.id === 'theme' && isDark.value ? IconSun : a.icon,
-      section: 'Actions',
+      section: '操作',
     }))
   const titled = chats.chats.value
     .filter((c) => !q || c.title.toLowerCase().includes(q))
@@ -91,7 +91,7 @@ const items = computed<Item[]>(() => {
       label: chat.title,
       detail: chat.model,
       icon: IconMessage,
-      section: 'Chats',
+      section: '对话',
       run: () => chats.openChat(chat.id),
     })
   }
@@ -101,7 +101,7 @@ const items = computed<Item[]>(() => {
       label: hit.title,
       detail: hit.snippet,
       icon: IconSearch,
-      section: 'Messages',
+      section: '消息',
       run: () => chats.revealNode(hit.chatId, hit.nodeId),
     })
   }

@@ -17,7 +17,7 @@ watch(thinking, (value) => {
 const label = computed(() => {
   if (thinking.value) return 'Thinking…'
   const ms = props.part.durationMs
-  return ms ? `Thought for ${formatDuration(ms)}` : 'Thoughts'
+  return ms ? `Thought for ${formatDuration(ms)}` : '思考过程'
 })
 
 function toggle() {

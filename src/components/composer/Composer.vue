@@ -275,7 +275,7 @@ defineExpose({ focus })
             :key="level"
             @click="setThink(level)"
           >
-            {{ level[0].toUpperCase() + level.slice(1) }} effort
+            {{ level[0].toUpperCase() + level.slice(1) }} 力度
           </MenuItem>
           <MenuItem @click="setThink(false)">关闭</MenuItem>
         </Menu>
@@ -285,7 +285,7 @@ defineExpose({ focus })
           class="text-text-muted ml-auto flex items-center gap-1.5 text-[11px] tabular-nums"
           :title="
             contextUsage.limit
-              ? 'Context used by the last reply'
+              ? '上一条回复占用的上下文'
               : 'Tokens in context after the last reply. Set num_ctx in chat settings to see the limit (Ollama defaults to 4096 unless configured).'
           "
           data-testid="context-meter"

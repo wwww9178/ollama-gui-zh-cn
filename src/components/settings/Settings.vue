@@ -37,14 +37,14 @@ async function saveUrl() {
   ollamaUrl.value = urlDraft.value.trim()
   models.info.clear()
   await models.refresh()
-  if (models.connection.value === 'ok') toast(`Connected to ${models.host()}`, 'success')
+  if (models.connection.value === 'ok') toast(`已连接 ${models.host()}`, 'success')
 }
 
 // Appearance
 const themes: { value: Theme; label: string }[] = [
-  { value: 'system', label: 'System' },
-  { value: 'light', label: 'Light' },
-  { value: 'dark', label: 'Dark' },
+  { value: 'system', label: '系统' },
+  { value: 'light', label: '浅色' },
+  { value: 'dark', label: '深色' },
 ]
 const LOCALES = [
   'en-US',
@@ -120,8 +120,8 @@ async function requestPersist() {
   persisted.value = (await navigator.storage?.persist?.()) ?? false
   toast(
     persisted.value
-      ? 'Storage is now persistent'
-      : 'The browser declined persistent storage',
+      ? '已开启持久存储'
+      : '浏览器拒绝了持久存储',
     persisted.value ? 'success' : 'info',
   )
 }
@@ -151,15 +151,15 @@ async function doImport(event: Event) {
 
 async function wipe() {
   const ok = await confirmAction({
-    title: 'Delete all chats?',
+    title: '删除全部对话？',
     message:
       'Every chat and message stored in this browser will be deleted. Export first if you want a backup.',
-    confirmLabel: 'Delete everything',
+    confirmLabel: '删除全部内容',
     danger: true,
   })
   if (ok) {
     await chats.deleteAllChats()
-    toast('All chats deleted', 'success')
+    toast('已删除全部对话', 'success')
   }
 }
 
@@ -194,7 +194,7 @@ const origin = location.origin
           :class="models.connection.value === 'error' ? 'text-red' : 'text-text-muted'"
         >
           <template v-if="models.connection.value === 'ok'">
-            Connected to {{ models.host() }} · {{ models.models.value.length }} models
+            已连接 {{ models.host() }} · {{ models.models.value.length }} 个模型
           </template>
           <template v-else-if="models.connection.value === 'error'">
             {{ models.connectionError.value }}
@@ -248,7 +248,7 @@ const origin = location.origin
               class="border-border bg-list text-text focus:border-accent max-w-[240px] rounded-lg border px-2 py-1 text-[12.5px] outline-none"
               data-testid="locale-select"
             >
-              <option value="">Same as system ({{ displayName(systemLocale) }})</option>
+              <option value="">跟随系统（{{ displayName(systemLocale) }}）</option>
               <option v-for="tag in LOCALES" :key="tag" :value="tag">
                 {{ displayName(tag) }}
               </option>
@@ -342,7 +342,7 @@ const origin = location.origin
             {{
               persisted
                 ? '已开启持久存储'
-                : 'The browser may clear storage when space runs low'
+                : '磁盘空间不足时浏览器可能清除存储'
             }}
           </span>
           <button

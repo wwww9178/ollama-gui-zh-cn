@@ -91,9 +91,9 @@ useEventListener(window, 'keydown', async (event: KeyboardEvent) => {
     event.preventDefault()
     const chat = chats.activeChat.value
     const ok = await confirmAction({
-      title: 'Delete chat?',
+      title: '删除该对话？',
       message: `"${chat.title}" will be deleted.`,
-      confirmLabel: 'Delete',
+      confirmLabel: '删除',
       danger: true,
     })
     if (ok) await chats.deleteChat(chat.id)

@@ -53,9 +53,9 @@ async function remove() {
   const chat = chats.activeChat.value
   if (!chat) return
   const ok = await confirmAction({
-    title: 'Delete chat?',
+    title: '删除该对话？',
     message: `"${chat.title}" and all of its messages will be deleted.`,
-    confirmLabel: 'Delete',
+    confirmLabel: '删除',
     danger: true,
   })
   if (ok) await chats.deleteChat(chat.id)
@@ -133,7 +133,7 @@ async function remove() {
         :icon="IconArchive"
         @click="chats.toggleArchive(chats.activeChat.value.id)"
       >
-        {{ chats.activeChat.value.archived ? 'Unarchive' : 'Archive' }}
+        {{ chats.activeChat.value.archived ? '取消归档' : '归档' }}
       </MenuItem>
       <MenuItem :icon="IconFileDownload" @click="exportMarkdown">
         导出为 Markdown

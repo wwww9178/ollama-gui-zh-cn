@@ -28,8 +28,8 @@ async function copy() {
     <p>
       {{
         crossOrigin
-          ? 'Check that Ollama is running and allows requests from this page:'
-          : 'Check that Ollama is running:'
+          ? '请确认 Ollama 正在运行，并允许来自本页面的请求：'
+          : '请确认 Ollama 正在运行：'
       }}
     </p>
     <div
@@ -40,7 +40,7 @@ async function copy() {
       <button
         type="button"
         class="text-text-muted hover:text-text flex-none"
-        :aria-label="copied ? 'Copied' : 'Copy command'"
+        :aria-label="copied ? '已复制' : '复制命令'"
         @click="copy"
       >
         <IconCheck v-if="copied" :size="14" />
@@ -49,7 +49,7 @@ async function copy() {
     </div>
     <p v-if="crossOrigin">
       {{
-        'Your browser may also ask to let this site access devices on your local network. Choose Allow, or re-enable it in the site settings next to the address bar.'
+        '浏览器还可能询问是否允许本站访问你的本地网络设备。请选择「允许」，或在地址栏旁的站点设置中重新开启。'
       }}
     </p>
     <p v-else>

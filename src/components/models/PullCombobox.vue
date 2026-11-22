@@ -184,7 +184,7 @@ const updated = computed(() =>
             已安装
           </span>
           <span class="text-text-muted ml-auto flex-none text-[11px] tabular-nums">
-            {{ formatPulls(option.model.pulls, locale) }} pulls
+            {{ formatPulls(option.model.pulls, locale) }} 次下载
           </span>
         </div>
         <p v-if="!option.size" class="text-text-muted mt-0.5 line-clamp-1 text-[11.5px]">
@@ -212,7 +212,7 @@ const updated = computed(() =>
         class="border-border text-text-muted mt-1 flex items-center gap-3 border-t px-2.5 pt-1.5 pb-1 text-[11px]"
       >
         <span>↑↓ choose · Tab sizes · ↵ pull</span>
-        <span v-if="updated" class="ml-auto">Library list from {{ updated }}</span>
+        <span v-if="updated" class="ml-auto">library 列表来自 {{ updated }}</span>
       </div>
     </div>
   </div>
